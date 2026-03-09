@@ -1,0 +1,629 @@
+{
+	"info": {
+		"_postman_id": "bi-dashboard-api-collection",
+		"name": "BI Dashboard API",
+		"description": "API collection for BI Dashboard with MSSQL (transactional) and Snowflake (analytics) dual datasource architecture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Dashboard - Analytics (Snowflake)",
+			"item": [
+				{
+					"name": "Get KPIs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/kpis",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "dashboard", "kpis"]
+						},
+						"description": "Get key performance indicators including total revenue, orders, average order value, customers and products count"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/dashboard/kpis",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "dashboard", "kpis"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"totalRevenue\": 33462.5,\n    \"totalOrders\": 100,\n    \"averageOrderValue\": 334.625,\n    \"totalCustomers\": 100,\n    \"totalProducts\": 100\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Sales Trends - Daily",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/sales-trends?period=daily",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "dashboard", "sales-trends"],
+							"query": [
+								{
+									"key": "period",
+									"value": "daily",
+									"description": "Options: daily, monthly, yearly"
+								}
+							]
+						},
+						"description": "Get sales trends grouped by the specified period"
+					},
+					"response": [
+						{
+							"name": "Daily Trends",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/dashboard/sales-trends?period=daily",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "dashboard", "sales-trends"],
+									"query": [{"key": "period", "value": "daily"}]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "[\n    {\n        \"date\": \"2024-01-15\",\n        \"revenue\": 1250.50,\n        \"orderCount\": 5,\n        \"averageOrderValue\": 250.10\n    },\n    {\n        \"date\": \"2024-01-16\",\n        \"revenue\": 2100.75,\n        \"orderCount\": 8,\n        \"averageOrderValue\": 262.59\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Sales Trends - Monthly",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/sales-trends?period=monthly",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "dashboard", "sales-trends"],
+							"query": [
+								{
+									"key": "period",
+									"value": "monthly"
+								}
+							]
+						},
+						"description": "Get sales trends grouped by month"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales Trends - Yearly",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/sales-trends?period=yearly",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "dashboard", "sales-trends"],
+							"query": [
+								{
+									"key": "period",
+									"value": "yearly"
+								}
+							]
+						},
+						"description": "Get sales trends grouped by year"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/top-products?limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "dashboard", "top-products"],
+							"query": [
+								{
+									"key": "category",
+									"value": "Electronics",
+									"description": "Optional: Filter by category",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Number of products to return (default: 10)"
+								}
+							]
+						},
+						"description": "Get top selling products by revenue"
+					},
+					"response": [
+						{
+							"name": "Top 10 Products",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/dashboard/top-products?limit=10",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "dashboard", "top-products"],
+									"query": [{"key": "limit", "value": "10"}]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "[\n    {\n        \"productName\": \"Premium Laptop\",\n        \"category\": \"Electronics\",\n        \"totalUnitsSold\": 150,\n        \"totalRevenue\": 149985.00,\n        \"currentStock\": 45\n    },\n    {\n        \"productName\": \"Wireless Headphones\",\n        \"category\": \"Electronics\",\n        \"totalUnitsSold\": 320,\n        \"totalRevenue\": 31968.00,\n        \"currentStock\": 120\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Top Products by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/top-products?category=Electronics&limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "dashboard", "top-products"],
+							"query": [
+								{
+									"key": "category",
+									"value": "Electronics"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Get top selling products filtered by category"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Segments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/customer-segments",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "dashboard", "customer-segments"]
+						},
+						"description": "Get customer segments (VIP, REGULAR, NEW) with revenue and spending metrics"
+					},
+					"response": [
+						{
+							"name": "Customer Segments",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/dashboard/customer-segments",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "dashboard", "customer-segments"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "[\n    {\n        \"segment\": \"VIP\",\n        \"customerCount\": 15,\n        \"totalRevenue\": 125000.00,\n        \"averageSpending\": 8333.33\n    },\n    {\n        \"segment\": \"REGULAR\",\n        \"customerCount\": 45,\n        \"totalRevenue\": 85000.00,\n        \"averageSpending\": 1888.89\n    },\n    {\n        \"segment\": \"NEW\",\n        \"customerCount\": 40,\n        \"totalRevenue\": 15000.00,\n        \"averageSpending\": 375.00\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Geographic Sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/geographic-sales",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "dashboard", "geographic-sales"]
+						},
+						"description": "Get sales data grouped by country and city"
+					},
+					"response": [
+						{
+							"name": "Geographic Sales",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/dashboard/geographic-sales",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "dashboard", "geographic-sales"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "[\n    {\n        \"country\": \"USA\",\n        \"city\": \"New York\",\n        \"orderCount\": 250,\n        \"totalRevenue\": 75000.00,\n        \"customerCount\": 45\n    },\n    {\n        \"country\": \"USA\",\n        \"city\": \"Los Angeles\",\n        \"orderCount\": 180,\n        \"totalRevenue\": 54000.00,\n        \"customerCount\": 32\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reports - Hybrid (MSSQL + Snowflake)",
+			"item": [
+				{
+					"name": "Get Complete Product Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/reports/product/1/complete",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "reports", "product", "1", "complete"]
+						},
+						"description": "Get complete product information combining transactional data (MSSQL) with analytics (Snowflake)"
+					},
+					"response": [
+						{
+							"name": "Complete Product Info",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/reports/product/1/complete",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "reports", "product", "1", "complete"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"productId\": 1,\n    \"name\": \"Premium Laptop\",\n    \"category\": \"Electronics\",\n    \"currentPrice\": 999.99,\n    \"currentStock\": 45,\n    \"totalUnitsSold\": 150,\n    \"totalRevenue\": 149985.00,\n    \"averageSellingPrice\": 999.90,\n    \"daysInCatalog\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Customer Insights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/reports/customer/1/insights",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "reports", "customer", "1", "insights"]
+						},
+						"description": "Get complete customer insights combining transactional data (MSSQL) with analytics (Snowflake)"
+					},
+					"response": [
+						{
+							"name": "Customer Insights",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/reports/customer/1/insights",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "reports", "customer", "1", "insights"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"customerId\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"city\": \"New York\",\n    \"country\": \"USA\",\n    \"lifetimeOrders\": 25,\n    \"lifetimeValue\": 12500.00,\n    \"averageOrderValue\": 500.00,\n    \"segment\": \"VIP\",\n    \"favoriteCategory\": \"Electronics\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transactional - MSSQL",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order\": {\n        \"customerId\": 1,\n        \"totalAmount\": 1299.98,\n        \"status\": \"PENDING\"\n    },\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 1,\n            \"price\": 999.99\n        },\n        {\n            \"productId\": 2,\n            \"quantity\": 2,\n            \"price\": 149.99\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders"]
+						},
+						"description": "Create a new order with order items. This updates stock levels in MSSQL."
+					},
+					"response": [
+						{
+							"name": "Order Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [{"key": "Content-Type", "value": "application/json"}],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"order\": {\n        \"customerId\": 1,\n        \"totalAmount\": 1299.98,\n        \"status\": \"PENDING\"\n    },\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 1,\n            \"price\": 999.99\n        },\n        {\n            \"productId\": 2,\n            \"quantity\": 2,\n            \"price\": 149.99\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/orders",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "orders"]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"body": "{\n    \"orderId\": 101,\n    \"customerId\": 1,\n    \"orderDate\": \"2024-02-24T10:30:00\",\n    \"totalAmount\": 1299.98,\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders", "1"]
+						},
+						"description": "Get order details by order ID from MSSQL"
+					},
+					"response": [
+						{
+							"name": "Order Details",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/1",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "orders", "1"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"orderId\": 1,\n    \"customerId\": 1,\n    \"orderDate\": \"2024-01-15T14:30:00\",\n    \"totalAmount\": 999.99,\n    \"status\": \"COMPLETED\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Customer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "1"]
+						},
+						"description": "Get customer details by customer ID from MSSQL"
+					},
+					"response": [
+						{
+							"name": "Customer Details",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{baseUrl}}/api/customers/1",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "customers", "1"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"customerId\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phoneNumber\": \"1234567890\",\n    \"address\": \"123 Main St\",\n    \"city\": \"New York\",\n    \"country\": \"USA\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product Stock",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/1/stock?stock=100",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "products", "1", "stock"],
+							"query": [
+								{
+									"key": "stock",
+									"value": "100",
+									"description": "New stock quantity"
+								}
+							]
+						},
+						"description": "Update product stock level in MSSQL"
+					},
+					"response": [
+						{
+							"name": "Stock Updated",
+							"originalRequest": {
+								"method": "PUT",
+								"url": {
+									"raw": "{{baseUrl}}/api/products/1/stock?stock=100",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "products", "1", "stock"],
+									"query": [{"key": "stock", "value": "100"}]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"productId\": 1,\n    \"name\": \"Premium Laptop\",\n    \"category\": \"Electronics\",\n    \"price\": 999.99,\n    \"stock\": 100\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"johndoe\",\n    \"email\": \"johndoe@example.com\",\n    \"password\": \"Password@123\",\n    \"role\": \"USER\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "register"]
+						},
+						"description": "Register a new user. Role must be USER, ADMIN, or ANALYST. Password must contain at least one digit, one lowercase, one uppercase, and one special character."
+					},
+					"response": [
+						{
+							"name": "User Registered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [{"key": "Content-Type", "value": "application/json"}],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"johndoe\",\n    \"email\": \"johndoe@example.com\",\n    \"password\": \"Password@123\",\n    \"role\": \"USER\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/register",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "auth", "register"]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": 3600,\n    \"username\": \"johndoe\",\n    \"email\": \"johndoe@example.com\",\n    \"role\": \"USER\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"johndoe\",\n    \"password\": \"Password@123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "login"]
+						},
+						"description": "Authenticate user and receive access and refresh tokens"
+					},
+					"response": [
+						{
+							"name": "Login Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [{"key": "Content-Type", "value": "application/json"}],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"johndoe\",\n    \"password\": \"Password@123\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/login",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "auth", "login"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": 3600,\n    \"username\": \"johndoe\",\n    \"email\": \"johndoe@example.com\",\n    \"role\": \"USER\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/refresh",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "refresh"]
+						},
+						"description": "Refresh the access token using a valid refresh token"
+					},
+					"response": [
+						{
+							"name": "Token Refreshed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [{"key": "Content-Type", "value": "application/json"}],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/refresh",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "auth", "refresh"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"tokenType\": \"Bearer\",\n    \"expiresIn\": 3600,\n    \"username\": \"johndoe\",\n    \"email\": \"johndoe@example.com\",\n    \"role\": \"USER\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Test Authentication",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"description": "JWT access token"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/test",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "test"]
+						},
+						"description": "Test endpoint to verify authentication is working"
+					},
+					"response": [
+						{
+							"name": "Auth Working",
+							"originalRequest": {
+								"method": "GET",
+								"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/test",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "auth", "test"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "\"Authentication is working!\""
+						}
+					]
+				}
+			]
+		}
+	]
+}

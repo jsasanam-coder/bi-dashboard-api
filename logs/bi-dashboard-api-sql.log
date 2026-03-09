@@ -1,0 +1,362 @@
+2026-03-06 19:18:28.408 DEBUG [] org.hibernate.SQL - 
+    alter table customers 
+       alter column phone_number varchar(15)
+2026-03-06 19:18:28.523 DEBUG [] org.hibernate.SQL - 
+    create table users (
+        user_id int identity not null,
+        created_at datetime2(7) not null,
+        email varchar(100) not null,
+        enabled bit not null,
+        password varchar(255) not null,
+        role varchar(20) not null,
+        updated_at datetime2(7),
+        username varchar(50) not null,
+        primary key (user_id)
+    )
+2026-03-06 19:18:28.791 DEBUG [] org.hibernate.SQL - 
+    alter table users 
+       drop constraint UK6dotkott2kjsp8vw4d0m25fb7
+2026-03-06 19:18:28.830 DEBUG [] org.hibernate.SQL - 
+    alter table users 
+       add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2026-03-06 19:18:28.852 DEBUG [] org.hibernate.SQL - 
+    alter table users 
+       drop constraint UKr43af9ap4edm43mmtq01oddj6
+2026-03-06 19:18:28.858 DEBUG [] org.hibernate.SQL - 
+    alter table users 
+       add constraint UKr43af9ap4edm43mmtq01oddj6 unique (username)
+2026-03-06 19:19:27.873 DEBUG [89c3578f-3b29-486b-aa47-e0d09d47989e] org.hibernate.SQL - 
+    select
+        top (?) u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:19:27.971 DEBUG [89c3578f-3b29-486b-aa47-e0d09d47989e] org.hibernate.SQL - 
+    select
+        top (?) u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-06 19:19:28.078 DEBUG [89c3578f-3b29-486b-aa47-e0d09d47989e] org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (created_at, email, enabled, password, role, updated_at, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-06 19:19:53.395 DEBUG [d040d89c-db83-4d8d-8971-1e64d4b85b65] org.hibernate.SQL - 
+    select
+        top (?) u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:01.694 DEBUG [1dcf17b7-8613-4e5a-9040-c553006e1b99] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:01.796 DEBUG [1dcf17b7-8613-4e5a-9040-c553006e1b99] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:10.347 DEBUG [f55eb30d-6550-4c95-a75c-93817928f804] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:10.426 DEBUG [f55eb30d-6550-4c95-a75c-93817928f804] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:10.507 DEBUG [] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:10.521 DEBUG [5fa937fe-c6e4-443b-866b-e3918615b4f3] o.s.jdbc.core.JdbcTemplate - Executing SQL query [    SELECT
+        SUM(total_amount) as total_revenue,
+        COUNT(*) as total_orders,
+        AVG(total_amount) as average_order_value,
+        COUNT(DISTINCT customer_id) as total_customers
+    FROM ORDERS
+]
+2026-03-06 19:20:31.728 DEBUG [87f9b319-0540-4de0-be2c-e4f8afffcbb8] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:31.808 DEBUG [87f9b319-0540-4de0-be2c-e4f8afffcbb8] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:31.824 DEBUG [] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:20:31.855 DEBUG [9243fa01-8a05-4c41-824c-a387b8e50eb6] org.hibernate.SQL - 
+    select
+        c1_0.customer_id,
+        c1_0.address,
+        c1_0.city,
+        c1_0.country,
+        c1_0.email,
+        c1_0.name,
+        c1_0.phone_number 
+    from
+        customers c1_0 
+    where
+        c1_0.customer_id=?
+2026-03-06 19:21:32.963 DEBUG [cb7a5419-4699-4373-a3ae-1b676f1b09db] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:21:33.042 DEBUG [cb7a5419-4699-4373-a3ae-1b676f1b09db] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:21:33.061 DEBUG [] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:21:40.706 DEBUG [bd369a91-ab36-48d0-8a4d-150b52b106ad] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:21:40.781 DEBUG [bd369a91-ab36-48d0-8a4d-150b52b106ad] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:21:40.795 DEBUG [] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:21:48.830 DEBUG [a8e419c0-f57f-48db-9b7e-8fcedf112ba2] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:21:48.915 DEBUG [a8e419c0-f57f-48db-9b7e-8fcedf112ba2] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:21:48.927 DEBUG [] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:28:34.800 DEBUG [ae722a69-5af8-463c-b667-01ae09f339c5] org.hibernate.SQL - 
+    select
+        top (?) u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:28:42.031 DEBUG [d5d45a17-3ae9-46ce-af4f-a0e47dbc0961] org.hibernate.SQL - 
+    select
+        top (?) u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:28:42.037 DEBUG [d5d45a17-3ae9-46ce-af4f-a0e47dbc0961] org.hibernate.SQL - 
+    select
+        top (?) u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-06 19:28:42.130 DEBUG [d5d45a17-3ae9-46ce-af4f-a0e47dbc0961] org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (created_at, email, enabled, password, role, updated_at, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-06 19:28:52.765 DEBUG [931949b2-4320-48e9-b22a-7db823be9627] org.hibernate.SQL - 
+    select
+        top (?) u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2026-03-06 19:28:52.770 DEBUG [931949b2-4320-48e9-b22a-7db823be9627] org.hibernate.SQL - 
+    select
+        top (?) u1_0.user_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-06 19:28:52.853 DEBUG [931949b2-4320-48e9-b22a-7db823be9627] org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (created_at, email, enabled, password, role, updated_at, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
