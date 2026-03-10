@@ -41,4 +41,19 @@ jwt:
   expiration: 86400000
   refresh-expiration: 604800000
 
+# SpringDoc OpenAPI / Swagger Configuration
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: none
+    default-models-expand-depth: 3
+    display-request-duration: true
+  show-actuator: false
+
 # Logging Configuration (managed by logback-spring.xml)
